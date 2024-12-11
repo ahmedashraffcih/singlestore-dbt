@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  singlestore:
+    image: singlestore/cluster-in-a-box
+    container_name: singlestore-ciab
+    environment:
+      - LICENSE_KEY=
+      - ROOT_PASSWORD=
+    ports:
+      - "3306:3306"
+      - "8080:8080"
+    restart: always
+    init: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]  # Replace with your health check URL or port
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 10s
+
+  dbt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dbt
+    ports:
+      - "8000:8000"  # Optional if running dbt-server
+    volumes:
+      - ./dbt_project:/usr/app/dbt_project
+      - ./profiles.yml:/root/.dbt/profiles.yml
+    working_dir: /usr/app/dbt_project
+    depends_on:
+      singlestore:
+        condition: service_healthy
+    entrypoint: ["dbt", "debug"]

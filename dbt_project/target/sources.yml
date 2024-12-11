@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: my_database  # The name of your database
+    schema: memsql     # The schema within the database
+    tables:
+      - name: status_table  # The name of the table you're referencing

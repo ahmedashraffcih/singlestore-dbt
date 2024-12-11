@@ -1,0 +1,11 @@
+singlestore_profile:
+  target: dev
+  outputs:
+    dev:
+      type: singlestore
+      host: singlestore-ciab  # Name of the service in Docker Compose
+      port: 3306              # SingleStore default port
+      user: root
+      password: "UTpJdYVfUnlj6xl5NWR1qMaOisdvll9n"  # Root password defined in Docker Compose
+      database: my_database  # Replace with your database name
+      schema: my_database  # Add the schema name here (replace with your schema name)

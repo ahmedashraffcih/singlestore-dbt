@@ -1,0 +1,16 @@
+name: ss_dbt
+version: '1.0'
+
+profile: singlestore_profile
+
+# Defining where your models and other resources are located
+model-paths: ["models"]
+
+# Tests should be an object, not a list
+tests: {}
+
+# Other configurations
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_modules"

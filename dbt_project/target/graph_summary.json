@@ -1,0 +1,1 @@
+{"_invocation_id": "b84f9d81-e26c-46f3-bafa-1f023ada54e3", "linked": {"0": {"name": "source.ss_dbt.my_database.status_table", "type": "source", "succ": [1]}, "1": {"name": "model.ss_dbt.my_status_model", "type": "model"}}}
